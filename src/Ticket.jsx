@@ -16,7 +16,7 @@ const Ticket = (props) => {
         scale={1}
         >
             <div className="handle" style={{backgroundColor: 'whitesmoke', width: '150px'}}>
-            <div>TICKET {props.id}</div>
+            <div className="ticket-container">TICKET {props.id}</div>
             {props.courses.map((course, i) => {
                 return <Course name={course} tID={props.id} courseNum={i + 1} key={i + 1}/>
             })}

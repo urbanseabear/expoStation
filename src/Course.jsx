@@ -1,14 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { useStopwatch } from "./helper";
+const classNames = require('classnames');
 
 const Course = (props) => {
   const [isSent, setIsSent] = useState(false);
+  const [sentTime, setSendTime] = useState('');
   const [hideFire, setHideFire] = useState(true);
+  const [formattedTime, setFormattedTime] = useState('00 : 00');
   const { isRunning, elapsedTime, startTimer, stopTimer } = useStopwatch();
+
+  useEffect(() => {
+    if (elapsedTime > 60) {
+    var min = elapsedTime / 60;
+    setFormattedTime(`${Math.floor(min)} : ${elapsedTime % 60}`);
+    return formattedTime;
+    } else {
+        setFormattedTime(`0 : ${elapsedTime}`);
+        return formattedTime;
+    }
+  }, [elapsedTime])
 
   const send = () => {
     setIsSent(true);
+    stopTimer();
+    setHideFire(true);
+    setSendTime(moment().format('h:mm:ss'));
   };
 
   const handleStartStop = () => {
@@ -26,16 +43,16 @@ const Course = (props) => {
   };
 
   return (
-    <div>
+    <div >
       <button
         onClick={() => showCourse()}
         type="button"
-        className="collapsible"
+        className={classNames("collapsible", {"sent": isSent})}
       >
         {props.courseNum}: {props.name}
-      </button>
+      </button><span hidden={isSent ? false : true}>sent at: {sentTime}</span>
       <span hidden={hideFire} className="fire-timer">
-        {moment(elapsedTime, "ss").format("mm : ss")}
+        {formattedTime}
         <button
           onClick={() => handleStartStop()}
           status={isRunning ? "running" : "stopped"}

@@ -3,15 +3,16 @@ import { useState, useEffect } from "react";
 export const useTimer = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
+  
 
   useEffect(
     () => {
       let interval;
       if (isRunning) {
         interval = setInterval(
-          () => setElapsedTime(prevElapsedTime => prevElapsedTime + 1),
-          1000
-        );
+          () => {
+            setElapsedTime(prevElapsedTime => prevElapsedTime + 1);
+        }, 1000);
       }
       return () => clearInterval(interval);
     },

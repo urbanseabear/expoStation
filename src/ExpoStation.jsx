@@ -25,18 +25,18 @@ const ExpoStation = () => {
         <div>meow</div>
         
         <button onClick={() => {
-            showTimer(false);
-        }}>start service</button>
+            showTimer(!timer);
+        }}>{timer ? 'start service' : 'stop service'}</button>
         <div hidden={timer}>{time}</div>
         <div></div>
         <img src="https://images-na.ssl-images-amazon.com/images/I/61QgApHtrZL._AC_SL1500_.jpg" width="800px"></img>
         <div id="ticket-window">
-        <Ticket courses={testTicket} id={ticketID}/>
+        <Ticket courses={testTicket} id={ticketID} key={ticketID}/>
         </div>
         <div>
-            <AddTicket onClick={() => setTicketID(ticketID++)}  id={ticketID} bText="Add A Ticket"/>
+            <AddTicket addId={() => setTicketID(ticketID + 1)}  id={ticketID} bText="Add A Ticket"/>
         </div>
-        <DeleteIcon style={{marginLeft: '90%', fontSize: '40px'}}><Trash></Trash></DeleteIcon>
+        <Trash></Trash>
         </div>
     );
 };

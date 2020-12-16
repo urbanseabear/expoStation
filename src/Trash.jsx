@@ -1,4 +1,5 @@
 import React from 'react';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const Trash = () => {
 
@@ -8,7 +9,8 @@ const Trash = () => {
 
     }
     return ( 
-      <span onMouseUp={(e) => handleDrop(e)}>
+      <span className="trash" onMouseUp={(e) => handleDrop(e)}>
+          <DeleteIcon style={{fontSize: '45px'}}></DeleteIcon>
       </span>
     );
 };

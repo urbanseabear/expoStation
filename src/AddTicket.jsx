@@ -30,7 +30,7 @@ const AddTicket = (props) => {
 
   const createTicket = (courseList) => {
     setDishes(dishes.concat(currentCourse));
-    setNewTicket(newTicket.concat(<Ticket courses={courseList} />));
+    setNewTicket(newTicket.concat(<Ticket courses={courseList} id={props.id} key={props.id}/>));
     setDishes([]);
     setCourses([]);
     setOpen(!open);
@@ -45,7 +45,10 @@ const AddTicket = (props) => {
          {courses}
          <button onClick={() => anotherCourse()}>add to ticket</button>
          
-         <button onClick={() => createTicket(dishes)}>create ticket</button>
+         <button onClick={() => {
+             props.addId();
+             createTicket(dishes);
+             }}>create ticket</button>
           <div></div>
         </div>
       );
@@ -93,7 +96,7 @@ const AddTicket = (props) => {
         {buttonText}
       </Button>
       <Modal
-        
+        disableEnforceFocus
         open={open}
         onClose={() => setOpen(!open)}
         aria-labelledby="modal-title"
