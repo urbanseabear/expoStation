@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './style.scss';
 import Ticket from './Ticket';
+import Trash from './Trash';
 import moment from 'moment';
 import AddTicket from './AddTicket';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 const ExpoStation = () => {
@@ -34,6 +36,7 @@ const ExpoStation = () => {
         <div>
             <AddTicket onClick={() => setTicketID(ticketID++)}  id={ticketID} bText="Add A Ticket"/>
         </div>
+        <DeleteIcon style={{marginLeft: '90%', fontSize: '40px'}}><Trash></Trash></DeleteIcon>
         </div>
     );
 };

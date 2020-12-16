@@ -1,4 +1,4 @@
-#crossedOut {
+.sent {
   text-decoration: line-through;
 }
 
@@ -11,6 +11,9 @@
   left: 25%;
 }
 
+#ticket-window {
+    max-height: 800px;
+}
 .collapsible {
   background-color: #c0c0c0;
   color: rgb(26, 25, 25);
